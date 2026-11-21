@@ -20,6 +20,8 @@ PostgreSQL 18, pgAdmin 4
 - sql/03_watchlist.sql: watchlist table of planets to follow
 - sql/04_select_where.sql: filtering, text matching, and sorting queries
 - sql/05_earth_like.sql: Earth-like planet analysis
+- sql/06_export.sql: exports the Earth-like candidates to a CSV
+- results/earth_like_candidates.csv: the 33 Earth-like candidates, closest first
 
 ## Findings
 - 6,470 confirmed planets (as of 11/13/2026)
@@ -28,6 +30,20 @@ PostgreSQL 18, pgAdmin 4
 - 33 planets are Earth-like in both size (0.8-1.6 Earth radii) and equilibrium temperature (180-310 K), about 0.5% of all planets
 - Transit found more of them (19 vs. 14), but all 10 closest were found by radial velocity. Transit surveys like Kepler looked at distant stars; radial velocity works best on bright, nearby stars.
 - Closest Earth-like candidate: Proxima Cen b, 4.2 light-years
+
+## Earth-like criteria
+A planet counts as an Earth-like candidate if it passes two filters: size and temperature.
+
+- **Radius 0.8 to 1.6 Earth radii**
+  - Upper limit: Rogers (2015) found that most planets at 1.6 Earth radii and larger are too low in density to be made of rock and iron alone. They likely have thick gas layers (mini-Neptunes).
+  - The Habitable Worlds Catalog uses the same 1.6 upper limit for its conservative sample (0.5 to 1.6 Earth radii).
+  - Lower limit: 0.8 is stricter than the catalog's 0.5, to stay closer to Earth's size. Smaller planets have weaker gravity and may not hold an atmosphere (like Mars).
+- **Equilibrium temperature 180 to 310 K**
+  - Earth's equilibrium temperature is about 255 K. This range is a rough window around that value, chosen for this project, not a published standard.
+  - Equilibrium temperature ignores the atmosphere. Venus would pass this filter, but its surface is about 735 K.
+  - Formal catalogs use the habitable zone (starlight received) instead. A future version of this project may compare pl_insol against habitable zone limits.
+
+These are screening filters, so the results are candidates, not habitable planets.
 
 ## Caveats
 - 540 planets have no equilibrium temperature and 50 have no radius, so they couldn't be checked.
@@ -41,3 +57,7 @@ PostgreSQL 18, pgAdmin 4
 - pl_insol: starlight received, Earth = 1
 - st_teff: star temperature, Kelvin; st_rad, st_mass: Sun = 1
 - sy_dist: distance, parsecs (1 pc = 3.26 light-years)
+
+## References
+- Rogers, L. A. (2015). Most 1.6 Earth-Radius Planets Are Not Rocky. The Astrophysical Journal, 801, 41. https://arxiv.org/abs/1407.4457
+- PHL @ UPR Arecibo. The Habitable Worlds Catalog. https://phl.upr.edu/hwc
