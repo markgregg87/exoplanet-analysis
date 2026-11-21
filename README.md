@@ -21,6 +21,7 @@ PostgreSQL 18, pgAdmin 4
 - sql/04_select_where.sql: filtering, text matching, and sorting queries
 - sql/05_earth_like.sql: Earth-like planet analysis
 - sql/06_export.sql: exports the Earth-like candidates to a CSV
+- sql/07_math_stats.sql: percent of planets by discovery method, average vs. median radius, radius quartiles
 - results/earth_like_candidates.csv: the 33 Earth-like candidates, closest first
 
 ## Findings
@@ -30,6 +31,9 @@ PostgreSQL 18, pgAdmin 4
 - 33 planets are Earth-like in both size (0.8-1.6 Earth radii) and equilibrium temperature (180-310 K), about 0.5% of all planets
 - Transit found more of them (19 vs. 14), but all 10 closest were found by radial velocity. Transit surveys like Kepler looked at distant stars; radial velocity works best on bright, nearby stars.
 - Closest Earth-like candidate: Proxima Cen b, 4.2 light-years
+- Transit found 4,798 (74.2%); Radial Velocity found 1,205 (18.6%); Microlensing found 294 (4.5%)
+- Median planet radius is 2.86 Earth radii, but the average is 5.85. A minority of large gas giants pulls the average up, so the median better describes a typical planet.
+- Radius quartiles: 25% of planets are under 1.85 Earth radii, and 25% are over 11.9 (about Jupiter-sized)
 
 ## Earth-like criteria
 A planet counts as an Earth-like candidate if it passes two filters: size and temperature.
