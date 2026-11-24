@@ -16,12 +16,10 @@ PostgreSQL 18, pgAdmin 4
 ## Files
 - data/pscomppars.csv: 6,470 planets, 17 columns
 - sql/01_create_and_load.sql: creates the planets table and loads the CSV
-- sql/02_queries.sql: first exploration queries
-- sql/03_watchlist.sql: watchlist table of planets to follow
-- sql/04_select_where.sql: filtering, text matching, and sorting queries
-- sql/05_earth_like.sql: Earth-like planet analysis
-- sql/06_export.sql: exports the Earth-like candidates to a CSV
-- sql/07_math_stats.sql: percent of planets by discovery method, average vs. median radius, radius quartiles
+- sql/02_discovery_overview.sql: total planets, planets and percent by discovery method, discoveries by year
+- sql/03_earth_like_candidates.sql: Earth-like candidates, missing data, and how the candidates were found
+- sql/04_export_earth_like.sql: exports the Earth-like candidates to a CSV
+- sql/05_planet_size_stats.sql: average vs. median radius, radius quartiles
 - results/earth_like_candidates.csv: the 33 Earth-like candidates, closest first
 
 ## Findings
@@ -47,21 +45,4 @@ A planet counts as an Earth-like candidate if it passes two filters: size and te
   - Equilibrium temperature ignores the atmosphere. Venus would pass this filter, but its surface is about 735 K.
   - Formal catalogs use the habitable zone (starlight received) instead. A future version of this project may compare pl_insol against habitable zone limits.
 
-These are screening filters, so the results are candidates, not habitable planets.
-
-## Caveats
-- 540 planets have no equilibrium temperature and 50 have no radius, so they couldn't be checked.
-- Equilibrium temperature is calculated from starlight alone and ignores atmosphere (Earth's is about 255 K, versus about 288 K actual).
-- Small, cool planets are the hardest to detect, so these counts reflect what has been found, not what exists.
-
-## Column units
-- pl_rade: Earth radii; pl_bmasse: Earth masses
-- pl_eqt: equilibrium temperature, Kelvin
-- pl_orbper: orbital period, days; pl_orbsmax: distance from star, AU
-- pl_insol: starlight received, Earth = 1
-- st_teff: star temperature, Kelvin; st_rad, st_mass: Sun = 1
-- sy_dist: distance, parsecs (1 pc = 3.26 light-years)
-
-## References
-- Rogers, L. A. (2015). Most 1.6 Earth-Radius Planets Are Not Rocky. The Astrophysical Journal, 801, 41. https://arxiv.org/abs/1407.4457
-- PHL @ UPR Arecibo. The Habitable Worlds Catalog. https://phl.upr.edu/hwc
+These are screening filters,
