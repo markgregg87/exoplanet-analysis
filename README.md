@@ -45,4 +45,21 @@ A planet counts as an Earth-like candidate if it passes two filters: size and te
   - Equilibrium temperature ignores the atmosphere. Venus would pass this filter, but its surface is about 735 K.
   - Formal catalogs use the habitable zone (starlight received) instead. A future version of this project may compare pl_insol against habitable zone limits.
 
-These are screening filters,
+These are screening filters, so the results are candidates, not habitable planets.
+
+## Caveats
+- 540 planets have no equilibrium temperature and 50 have no radius, so they couldn't be checked.
+- Equilibrium temperature is calculated from starlight alone and ignores atmosphere (Earth's is about 255 K, versus about 288 K actual).
+- Small, cool planets are the hardest to detect, so these counts reflect what has been found, not what exists.
+
+## Column units
+- pl_rade: Earth radii; pl_bmasse: Earth masses
+- pl_eqt: equilibrium temperature, Kelvin
+- pl_orbper: orbital period, days; pl_orbsmax: distance from star, AU
+- pl_insol: starlight received, Earth = 1
+- st_teff: star temperature, Kelvin; st_rad, st_mass: Sun = 1
+- sy_dist: distance, parsecs (1 pc = 3.26 light-years)
+
+## References
+- Rogers, L. A. (2015). Most 1.6 Earth-Radius Planets Are Not Rocky. The Astrophysical Journal, 801, 41. https://arxiv.org/abs/1407.4457
+- PHL @ UPR Arecibo. The Habitable Worlds Catalog. https://phl.upr.edu/hwc
