@@ -20,6 +20,7 @@ PostgreSQL 18, pgAdmin 4
 - sql/03_earth_like_candidates.sql: Earth-like candidates, missing data, and how the candidates were found
 - sql/04_export_earth_like.sql: exports the Earth-like candidates to a CSV
 - sql/05_planet_size_stats.sql: average vs. median radius, radius quartiles
+- sql/06_multi_candidate_systems.sql: star systems with more than one Earth-like candidate
 - results/earth_like_candidates.csv: the 33 Earth-like candidates, closest first
 
 ## Findings
@@ -32,6 +33,7 @@ PostgreSQL 18, pgAdmin 4
 - Transit found 4,798 (74.2%); Radial Velocity found 1,205 (18.6%); Microlensing found 294 (4.5%)
 - Median planet radius is 2.86 Earth radii, but the average is 5.85. A minority of large gas giants pulls the average up, so the median better describes a typical planet.
 - Radius quartiles: 25% of planets are under 1.85 Earth radii, and 25% are over 11.9 (about Jupiter-sized)
+- 6 star systems have more than one Earth-like candidate: GJ 1002, GJ 1061, Kepler-1649, Teegarden's Star, TOI-700, and TRAPPIST-1. TRAPPIST-1 is the only one with three (e, f, and g).
 
 ## Earth-like criteria
 A planet counts as an Earth-like candidate if it passes two filters: size and temperature.
